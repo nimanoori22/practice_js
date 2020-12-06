@@ -1,12 +1,3 @@
-// Create a circle shaped path at the center of the view,
-// with a radius of 70:
-
-// var path = new Path.Circle({
-// 	center: view.center,
-// 	radius: 70,
-// 	fillColor: 'red'
-// });
-
 myPoints = [];
 function elementSize() {
     var h = window.innerHeight;
@@ -14,22 +5,21 @@ function elementSize() {
     return [Math.round(w * Math.random()), Math.round(h * Math.random())];
 }
 
-console.log(typeof elementSize()[0]);
-
 function onKeyDown(event) {
 	// When a key is pressed, set the content of the text item:
 	if(event.key==='a') {
         
-        console.log(elementSize());
-        
         var myPoint = new Point(elementSize()[0], elementSize()[1]);
-        var myCircle = new Path.Circle(myPoint, 10);
+        var myCircle = new Path.Circle(myPoint, 300);
         myCircle.fillColor = 'red';
+        myPoints.push(myCircle);
+        console.log(myPoints);
     }
 }
 
-// function onFrame(event) {
-// 	// Each frame, change the fill color of the path slightly by
-// 	// adding 1 to its hue:
-// 	// path.fillColor.hue += 1;
-// }
+function onFrame(event) {
+    for(i = 0; i < myPoints.length; i++) {
+        myPoints[i].fillColor.hue += 1;
+        myPoints[i].scale(0.9);
+    }
+}
