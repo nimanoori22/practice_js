@@ -176,6 +176,22 @@ function onKeyDown(event) {
     }
 }
 
+var randomProperty = function (obj) {
+    var keys = Object.keys(obj);
+    return obj[keys[ keys.length * Math.random() << 0]];
+};
+
+console.log(randomProperty(keys));
+
+document.getElementById('myCanvas').onclick = function circleByClick() {
+    var myPoint = new Point(randomPoints()[0], randomPoints()[1]);
+    var myCircle = new Path.Circle(myPoint, 500);
+    var chosenKey = randomProperty(keys)
+    myCircle.fillColor = chosenKey.color;
+    chosenKey.sound.play();
+    myCircles.push(myCircle);
+}
+
 function onFrame(event) {
     for(i = 0; i < myCircles.length; i++) {
         myCircles[i].scale(0.9);
