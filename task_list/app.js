@@ -1,13 +1,14 @@
 const input = document.querySelector('#task');
 const addTask = document.querySelector('#task-form .btn');
 const taskList = document.querySelector('.collection');
+const mylist = taskList.childNodes;
 
 loadEvents();
 
 function loadEvents() {
 
     addTasktoTasks();
-
+    removeItem();
 
 }
 
@@ -25,4 +26,13 @@ function addTasktoTasks() {
         input.value = '';
         e.preventDefault();
     }); 
+}
+
+
+function removeItem() {
+    taskList.addEventListener('click', function(e) {
+        if(e.target.parentNode.classList.contains('delete-item')) {
+            e.target.parentNode.parentNode.remove();
+        }
+    });
 }
