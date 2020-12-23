@@ -38,6 +38,7 @@ function removeItem() {
     taskList.addEventListener('click', function(e) {
         if(e.target.parentNode.classList.contains('delete-item')) {
             e.target.parentNode.parentNode.remove();
+            removeFromLocalStorage(e.target.parentNode.parentNode.textContent);
         }
     });
 }
@@ -47,6 +48,7 @@ function clearTasks() {
         while(taskList.childNodes.length != 0) {
             taskList.removeChild(taskList.childNodes[0]);
         }
+        clearLoaclStorage();
     });
 }
 
@@ -82,6 +84,7 @@ function addToLocalStorage(el) {
 
 function loadFromLoaclStorage() {
     if(localStorage.getItem('lis') !== null){
+        let li_list;
         li_list = JSON.parse(localStorage.getItem('lis'));
         li_list.forEach(function(li){
             const myli = document.createElement('li');
@@ -94,4 +97,20 @@ function loadFromLoaclStorage() {
             taskList.appendChild(myli);
         });
     }
+}
+
+
+function removeFromLocalStorage(el) {
+    let li_list;
+    li_list = JSON.parse(localStorage.getItem('lis'));
+    li_list.forEach(function(li, index){
+        if(li === el){
+            li_list.splice(index, 1);
+            localStorage.setItem('lis', JSON.stringify(li_list));
+        }
+    });
+}
+
+function clearLoaclStorage() {
+    localStorage.clear();
 }
