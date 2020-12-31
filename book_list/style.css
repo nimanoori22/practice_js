@@ -1,0 +1,12 @@
+.alert, .success {
+    color: white;
+    padding: 5px;
+}
+
+.alert {
+    background: red;
+}
+
+.success {
+    background: green;
+}
