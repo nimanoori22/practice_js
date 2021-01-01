@@ -13,9 +13,7 @@ maxEL.textContent = maxNum;
 
 let winningNum = numPicker(minNum, maxNum);
 
-btn.addEventListener('click', function(e){
-    playAgain(e);
-});
+btn.addEventListener('click', playAgain);
 
 btn.addEventListener('click', function(){
     if(numberOfGuesses > 1) {
@@ -37,6 +35,8 @@ function check(num) {
       }
     else if(num === winningNum) {
         setMessage('you won', 'green');
+        btn.value = 'play again';
+        btn.classList.add('play-again');
     }else {
         numberOfGuesses -= 1;
         input.value = '';
